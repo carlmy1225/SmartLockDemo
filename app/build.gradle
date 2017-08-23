@@ -1,5 +1,7 @@
 apply plugin: 'com.android.application'
 
+def currentChannel = rootProject.hasProperty('releaseChannel') ? rootProject.releaseChannel : "test";
+
 android {
     compileSdkVersion 24
     buildToolsVersion "24.0.3"
@@ -17,6 +19,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    productFlavors{
+        rc {
+            manifestPlaceholders = [umeng_channel: "${currentChannel}"]
+        }
+    }
 }
 
 dependencies {
@@ -24,3 +32,5 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:24.2.1'
 }
+
+
