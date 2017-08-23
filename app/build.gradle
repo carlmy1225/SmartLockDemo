@@ -1,6 +1,8 @@
 apply plugin: 'com.android.application'
 
 def currentChannel = rootProject.hasProperty('releaseChannel') ? rootProject.releaseChannel : "test";
+def String vName = "v" + rootProject.ext.mainAppVersionName.replace(".","")
+project.archivesBaseName = "Smd-${vName}-${currentChannel}"
 
 android {
     compileSdkVersion 24
